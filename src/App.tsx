@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import {MasonryTile} from "./MasonryTile";
+import {MasonryItem} from "./types";
+import {Masonry} from "./Masonry";
 
 function App() {
+  const [data, setData] = useState<MasonryItem[]>([])
+  useEffect(() => {
+    fetch("https://api.jsonbin.io/v3/b/6303bf5ea1610e63860a5cf7?meta=false")
+      .then((res) => res.json())
+      .then((json) => setData(json.slice(0, 20)))
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Masonry items={data} />
     </div>
   );
 }
