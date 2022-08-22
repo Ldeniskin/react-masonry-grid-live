@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {MasonryTile} from "./MasonryTile";
 import {MasonryItem} from "./types";
 import {Masonry} from "./Masonry";
 
